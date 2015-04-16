@@ -1,5 +1,8 @@
+body {
+    font-family: 'Open Sans', sans-serif;
+}
 .container{
-    width: 900px;
+    max-width: 900px;
 
 }
 #header {
@@ -17,16 +20,20 @@
     }
 }
 .juliegadoury{
-    font-size: 30px;
+    font-size: 34px;
     font-family: 'Alegreya Sans', sans-serif;
 }
 .julie{
-    color: darkgray;
+    color: #6D6D6D;
 }
 .gadoury{
     color: #FFB238;
 }
+.titre{
+    font-family: 'Open Sans', sans-serif;
+    color: #6D6D6D;
 
+}
 /*----Navigation---*/
 
 .navbar {
@@ -48,6 +55,15 @@
     margin-top: 20px;
 }
 .separateurGris{
-    border-bottom:1px solid darkgray;
+    border-bottom:1px solid #6D6D6D;
     padding: 0;
 }
+
+.textContenu{
+    padding: 20px;
+    font-size: 16px;
+}
+a:link    {color:#6D6D6D;  text-decoration:none}
+a:visited {color:#6D6D6D;  text-decoration:none}
+a:hover   {color:#FFB238;  text-decoration:none}
+a:active  {color:#6D6D6D;  text-decoration:none}
