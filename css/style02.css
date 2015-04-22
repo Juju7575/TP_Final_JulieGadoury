@@ -1,0 +1,42 @@
+
+#header {
+    margin: 0 auto;
+    padding: 100px 0 0 0;
+    text-align: center;
+    font-family: 'Alegreya Sans', sans-serif;
+    color: #6D6D6D;
+    font-size: 16px;
+}
+@media (min-width: 768px) {
+    .navbar .navbar-nav {
+        display: inline-block;
+        float: none;
+    }
+    .navbar .navbar-collapse {
+        text-align: center;
+    }
+}
+.juliegadoury{
+    font-size: 30px;
+}
+.gadoury{
+    color: #FFB238;
+}
+.espace{
+    height: 40px;
+}
+
+a:link    {color:#6D6D6D;  text-decoration:none}
+a:visited {color:#6D6D6D;  text-decoration:none}
+a:hover   {color:#FFB238;  text-decoration:none}
+a:active  {color:#6D6D6D;  text-decoration:none}
+
+
+.separateurJaune{
+    border:1px solid #FFB238;
+    width: 50px;
+    padding: 20px;
+}
+.marginTopRow {
+    margin-top: 20px;
+}
