@@ -1,18 +1,23 @@
+
+
+
 <?php
+ini_get('display_errors');
   require_once('stripe/config.php');
 
   $token  = $_POST['stripeToken'];
 
-  $customer = \Stripe\Customer::create(array(
+  $customer = \stripe\Customer::create(array(
       'email' => 'customer@example.com',
       'card'  => $token
   ));
 
-  $charge = \Stripe\Charge::create(array(
+  $charge = \stripe\Charge::create(array(
       'customer' => $customer->id,
-      'amount'   => 5000,
-      'currency' => 'usd'
+      'amount'   => 2000,
+      'currency' => 'cad'
   ));
 
-  echo '<h1>Successfully charged $50.00!</h1>';
+echo <h1>Successfully charged $5!</h1>';
 ?>
+

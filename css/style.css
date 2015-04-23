@@ -61,11 +61,21 @@ body {
 
 .textContenu{
     padding: 20px;
-    font-size: 16px;
+    font-size: 14px;
     color:#6D6D6D;
 }
-a:link    {color:#6D6D6D;  text-decoration:none}
-a:visited {color:#6D6D6D;  text-decoration:none}
+.textJoindre{
+
+    font-size: 14px;
+    color:#6D6D6D;
+    text-align: justify;
+}
+.textCoordonne{
+    color:#FFB238;
+
+}
+a:link  {color:#6D6D6D;  text-decoration:none}
+a:visited  {color:#6D6D6D;  text-decoration:none}
 a:hover   {color:#FFB238;  text-decoration:none}
 a:active  {color:#6D6D6D;  text-decoration:none}
 
@@ -77,6 +87,66 @@ div .col-md-12{
     margin-bottom: 5px;
 }
 
-.iconesRS {
-    padding-right: 5px;
+a, .iconesRS {
+    padding-right: 10px;
+    padding-top: 10px;
 }
+/*----Progress Bar---*/
+.pace {
+    -webkit-pointer-events: none;
+    pointer-events: none;
+
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+}
+
+.pace.pace-inactive .pace-progress {
+    display: none;
+}
+
+.pace .pace-progress {
+
+    display: block;
+    position: absolute;
+    margin-top: 190px;
+    width: 100%;
+    text-align: center;
+
+    -webkit-transform: translate3d(0, 0, 0) !important;
+    -ms-transform: translate3d(0, 0, 0) !important;
+    transform: translate3d(0, 0, 0) !important;
+}
+
+.pace .pace-progress:after {
+
+    content: attr(data-progress-text);
+    font-family: "Helvetica Neue", sans-serif;
+    font-weight: 100;
+    font-size: 7rem;
+    line-height: 1;
+
+    color: rgba(0, 0, 0, 0.19999999999999996);
+}
+/*----Fin Progress Bar---*/
+
+/*-----Porfolio--------*/
+.textPorfolio p{
+    margin-top: 10px;
+    text-align: justify;
+}
+#map-container {
+    height: 300px
+}
+/*-----Formulaire--------*/
+#textarea{
+    width: 400px;
+    height: 150px;
+    border-color: #bdbdbd;
+}
+#singlebutton{
+    color: #6D6D6D;
+    background-color: #FFB238;
+    border-color: transparent;
+}
+/*-----Fin Formulaire--------*/

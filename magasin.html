@@ -1,128 +1,139 @@
-<!DOCTYPE html>
+<?php # buy.php
+
+require('./config.php');
+
+// Uses sessions to test for duplicate submissions:
+session_start();
+
+?><!doctype html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <title>Julie GADOURY</title>
-    <!-- Favicon -->
-    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
-    <link rel="icon" href="img/favicon.ico" type="image/x-icon">
-    <!-- Google Font -->
-    <link href='http://fonts.googleapis.com/css?family=Alegreya+Sans' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="css/style.css">
-    <!--Tracking Google Analytics-->
-    <script type="text/javascript">
-        var _gaq = _gaq || [];
-        _gaq.push(['_setAccount', 'UA-58346903-2']);
-        _gaq.push(['_trackPageview']);
-
-        (function() {
-            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-        })();
-    </script>
+    <title>Buy This Thing</title>
+    <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
 </head>
+<body><?php
 
-<body>
-<!-- Facebook SDK -->
-<script>
-    window.fbAsyncInit = function() {
-        FB.init({
-            appId      : '942573445787298',
-            xfbml      : true,
-            version    : 'v2.3'
-        });
-    };
+// Check for a form submission:
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-    (function(d, s, id){
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) {return;}
-        js = d.createElement(s); js.id = id;
-        js.src = "//connect.facebook.net/en_US/sdk.js";
-        fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
-</script>
-<!-- Fin Facebook SDK -->
-<!-- Page Content -->
-<div class="container">
-    <header id="header">
-        <div class="row">
-            <div class="col-md-12 juliegadoury"><span class="julie">Julie </span><span class="gadoury">GADOURY</span></div>
-            <div class="col-md-12 titre">conceptrice Web & graphique</div>
-        </div>
-        <div class="row">
-            <div class="col-md-12"><!--MENU--->
-                <nav class="navbar navbar-default">
-                    <div class="container-fluid">
-                        <!-- Brand and toggle get grouped for better mobile display -->
-                        <div class="navbar-header">
-                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                                <span class="sr-only">Toggle navigation</span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                            </button>
-                        </div>
+	// Stores errors:
+	$errors = array();
 
-                        <!-- Collect the nav links, forms, and other content for toggling -->
-                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                            <ul class="nav navbar-nav">
-                                <li><a href="index02.html">À propos de moi<span class="sr-only">(current)</span></a></li>
-                                <li><a href="projets.html">Mes PROJETS</a></li>
-                                <li><a href="magasin.html">Ma BOUTIQUE</a></li>
-                                <li><a href="joindre.html">Me JOINDRE</a></li>
-                            </ul>
-                        </div><!-- /.navbar-collapse -->
-                    </div><!-- /.container-fluid -->
-                </nav>
+	// Need a payment token:
+	if (isset($_POST['stripeToken'])) {
 
-            </div><!--FIN MENU--->
-        </div>
+		$token = $_POST['stripeToken'];
 
-    </header><!----FIN EN-TETE--->
-    <!----Bouton de payement--->
-    <form action="succes.php" method="POST">
-        <script
-                src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                data-key="pk_test_2uVngJUlwknHJP2fLNyifFc0"
-                data-amount="2000"
-                data-name="Demo Site"
-                data-description="2 widgets ($20.00)"
-                data-image="img/128x128.png">
-        </script>
-    </form>
-</div><!-----Fin container--->
+		// Check for a duplicate submission, just in case:
+		// Uses sessions, you could use a cookie instead.
+		if (isset($_SESSION['token']) && ($_SESSION['token'] == $token)) {
+			$errors['token'] = 'You have apparently resubmitted the form. Please do not do that.';
+		} else { // New submission.
+			$_SESSION['token'] = $token;
+		}
 
-    <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
-    <!-- Bootstrap Javascript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+	} else {
+		$errors['token'] = 'The order cannot be processed. Please make sure you have JavaScript enabled and try again.';
+	}
 
-    <script>
-        $(function() {
-            //-----------------------------------
-            // Mettre votre code javascript ici, si nécessaire
-            //-----------------------------------
-        });
-    </script>
+	// Set the order amount somehow:
+	$amount = 2000; // $20, in cents
 
-    <!--Google Analytics--->
-    <script>
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+	// Validate other form data!
 
-        ga('create', 'UA-58346903-2', 'auto');
-        ga('send', 'pageview');
+	// If no errors, process the order:
+	if (empty($errors)) {
 
-    </script>
+		// create the charge on Stripe's servers - this will charge the user's card
+		try {
+
+			// Include the Stripe library:
+			// Assumes you've installed the Stripe PHP library using Composer!
+			require_once('vendor/autoload.php');
+
+			// set your secret key: remember to change this to your live secret key in production
+			// see your keys here https://manage.stripe.com/account
+			\Stripe\Stripe::setApiKey(STRIPE_PRIVATE_KEY);
+
+			// Charge the order:
+			$charge = \Stripe\Charge::create(array(
+				"amount" => $amount,// amount in cents, again
+"currency" => "usd",
+"source" => $token,
+"description" => $email
+)
+);
+
+// Check that it was paid:
+if ($charge->paid == true) {
+
+// Store the order in the database.
+// Send the email.
+// Celebrate!
+
+} else { // Charge was not paid!
+echo '<div class="alert alert-error"><h4>Payment System Error!</h4>Your payment could NOT be processed (i.e., you have not been charged) because the payment system rejected the transaction. You can try again or use another card.</div>';
+}
+
+} catch (\Stripe\Error\Card $e) {
+// Card was declined.
+$e_json = $e->getJsonBody();
+$err = $e_json['error'];
+$errors['stripe'] = $err['message'];
+} catch (\Stripe\Error\ApiConnection $e) {
+// Network problem, perhaps try again.
+} catch (\Stripe\Error\InvalidRequest $e) {
+// You screwed up in your programming. Shouldn't happen!
+} catch (\Stripe\Error\Api $e) {
+// Stripe's servers are down!
+} catch (\Stripe\Error\Base $e) {
+// Something else that's not the customer's fault.
+}
+
+} // A user form submission error occurred, handled below.
+
+} // Form submission.
+
+// Set the Stripe key:
+// Uses STRIPE_PUBLIC_KEY from the config file.
+echo '<script type="text/javascript">Stripe.setPublishableKey("' . STRIPE_PUBLIC_KEY . '");</script>';
+?>
+
+<h1>Buy This Thing</h1>
+
+<form action="buy.php" method="POST" id="payment-form">
+
+    <?php // Show PHP errors, if they exist:
+		if (isset($errors) && !empty($errors) && is_array($errors)) {
+			echo '<div class="alert alert-error"><h4>Error!</h4>The following error(s) occurred:<ul>';
+    foreach ($errors as $e) {
+    echo "<li>$e</li>";
+    }
+    echo '</ul></div>';
+    }?>
+
+    <div id="payment-errors"></div>
+
+    <span class="help-block">You can pay using: Mastercard, Visa, American Express, JCB, Discover, and Diners Club.</span>
+
+    <div class="alert alert-info"><h4>JavaScript Required!</h4>For security purposes, JavaScript is required in order to complete an order.</div>
+
+    <label>Card Number</label>
+    <input type="text" size="20" autocomplete="off" class="card-number input-medium">
+    <span class="help-block">Enter the number without spaces or hyphens.</span>
+    <label>CVC</label>
+    <input type="text" size="4" autocomplete="off" class="card-cvc input-mini">
+    <label>Expiration (MM/YYYY)</label>
+    <input type="text" size="2" class="card-expiry-month input-mini">
+    <span> / </span>
+    <input type="text" size="4" class="card-expiry-year input-mini">
+
+    <button type="submit" class="btn" id="submitBtn">Submit Payment</button>
+
+</form>
+
+<script src="js/buy.js"></script>
 
 </body>
 </html>
