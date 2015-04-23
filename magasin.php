@@ -17,6 +17,7 @@
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <!-- Progress bar -->
     <script src="/js/pace.js"></script>
+    <script src="/js/photo-gallery.js"></script>
     <!--Tracking Google Analytics-->
     <script type="text/javascript">
       var _gaq = _gaq || [];
@@ -55,8 +56,10 @@
     <div class="container">
         <header id="header">
         <div class="row">
-            <div class="col-md-12 juliegadoury"><span class="julie">Julie </span><span class="gadoury">GADOURY</span></div>
-            <div class="col-md-12 titre">conceptrice Web & graphique</div>
+             <a href="index02.html">
+                        <div class="col-md-12 juliegadoury"><span class="julie">Julie </span><span class="gadoury">GADOURY</span></div>
+                        <div class="col-md-12 titre">conceptrice Web & graphique</div>
+                        </a>
         </div>
         <div class="row">
             <div class="col-md-12"><!--MENU--->
@@ -85,32 +88,105 @@
                 </nav>
 
             </div><!--FIN MENU--->
+
             </div>
+</header>
+<!----FIN EN-TETE--->
 
+    <div class="row">
+        <div class="col-lg-12 separateurGris"></div>
+    </div>
 
+<div class="container textGallerie">
+        <div class="row">
+           <div class="col-xs-10 col-center-block">
+            <h3 class="titreCentre">
+                MON CATALOGUE
+            </h3>
+            <p>Puisque que ma réalité est maintenant de passer plusieurs heures à mon bureau de travail en compagnie de mon ami l'ordi, je vous présente quelques objets qui agrémente ma nouvelle vie de 'geek'.</p></br>
+            </div>
+        </div>
+</div>
+        <ul class="row">
+            <li class="col-md-4 col-sm-12 col-xs-12">
+                <img class="img-responsive" src="img/catalogue/hammac.jpg"></br>
 <form action="charge.php" method="POST">
-	<script
-			src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-			data-key="pk_test_2uVngJUlwknHJP2fLNyifFc0"
-			data-amount="2000"
-			data-name="Demo Site"
-			data-description="2 widgets ($20.00)"
-			data-image="img/icon128x128.png">
-	</script>
-</form>
+                                      	<script
+                                      			src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                                      			data-key="pk_test_2uVngJUlwknHJP2fLNyifFc0"
+                                      			data-amount="2000"
+                                      			data-name="Demo Site"
+                                      			data-description="2 widgets ($20.00)"
+                                      			data-image="img/icon128x128.png">
+                                      	</script>
+                                      </form>
+            </li>
+
+          </ul>
+<hr>
+<!-- Footer -->
+<div class="row">
+           <div class="col-lg-12 col-center-block">
+            <p class="copyright">Tous droits réservés © juliegadoury.ca 2015</p>
+            </div>
+        </div>
+
+
+ </div> <!-- /container -->
+
+
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-body">
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+
+
+
+
+
+    </div>
+
+
 
 
 
     </div><!-----Fin container--->
 
-
+ <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-body">
+                          </div>
+                        </div><!-- /.modal-content -->
+                      </div><!-- /.modal-dialog -->
+                    </div><!-- /.modal -->
 
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+    <script src="dist/js/bootstrap.min.js"></script>
     <!-- Bootstrap Javascript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-
-
+	<!--Modal--->
+	<script>
+ 	$(document).ready(function(){
+           $('li img').on('click',function(){
+                var src = $(this).attr('src');
+                var img = '<img src="' + src + '" class="img-responsive"/>';
+                $('#myModal').modal();
+                $('#myModal').on('shown.bs.modal', function(){
+                    $('#myModal .modal-body').html(img);
+                });
+                $('#myModal').on('hidden.bs.modal', function(){
+                    $('#myModal .modal-body').html('');
+                });
+           });
+        })
+     </script>
     <!--Google Analytics--->
     <script>
         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
