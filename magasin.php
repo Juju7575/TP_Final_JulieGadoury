@@ -86,44 +86,21 @@
 
             </div><!--FIN MENU--->
             </div>
-            <div class="row">
-                <div class="col-md-12"><img src="img/8bc72ed7.jpeg" class="img-responsive  center-block" alt="Julie GADOURY"></div>
-            </div>
 
-            </header><!----FIN EN-TETE--->
-        <div class="row marginTopRow">
-            <div class="col-md-7 textContenu"><h5>À PROPOS DE MOI</h5><p>Je suis persévérante et ouverte d'esprit. On m'apprécie pour mon souci du travail bien fait. Je me distingue par mon sens de l'organisation et de la planification. J'ai développé un intérêt marqué pour la recherche et l'élaboration de méthodes de travail. Je suis imaginative et la création est un de mes outils de travail. Travailler avec les gens, m'apporte de la motivation, car l'échange, le partage et l'entraide sont selon moi source d'accomplissement.</p></div>
-            <div class="col-md-1"></div>
-            <div class="col-md-4 textContenu">
-                <div class="row">
-                    <div class="col-md-12"><h5>ME JOINDRE</h5></div>
-                    <div class="col-md-12"><a href="mailto:info@juliegadoury.ca">info@juliegadoury.ca</a></div>
-                    <div class="col-md-12">819.277.4347</div>
-                    <div class="col-md-12"><a href="Julie Gadoury.vcf">vcard</a></div>
-                    <div class="col-md-12"><span class="iconesRS"><a href="https://www.facebook.com/650451964" target="_blank"><img src="img/iconeFB.png" alt="Icone Facebook""></a></span><a href="https://www.linkedin.com/profile/view?id=404738490&trk" target="_blank"><img src="img/iconeLinkedin.png" alt="Icone Linkedin"></a></div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="span12">
-                <div class="thumbnail center well well-small text-center textContenu">
-                    <h4>mon INFOLETTRE</h4>
 
-                    <p>Suivez-moi, dans mon cheminement Web.<br/>
-                        Une fois par mois, je vous enverrai des nouvelles de moi et de mes découvertes Web. </p>
+<form action="charge.php" method="POST">
+	<script
+			src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+			data-key="pk_test_2uVngJUlwknHJP2fLNyifFc0"
+			data-amount="2000"
+			data-name="Demo Site"
+			data-description="2 widgets ($20.00)"
+			data-image="img/icon128x128.png">
+	</script>
+</form>
 
-                    <form action="" method="post">
-                        <div class="input-prepend"><span class="add-on"><i class="icon-envelope"></i></span>
-                            <input type="text" id="" name="" placeholder="*Prénom">
-                            <input type="text" id="" name="" placeholder="*Nom">
-                            <input type="text" id="" name="" placeholder="*Courriel">
-                        </div>
-                        <br />
-                        <input type="submit" value="Abonnez-vous!" class="btn btn-large" />
-                    </form>
-                </div>
-            </div>
-        </div>
+
+
     </div><!-----Fin container--->
 
 
